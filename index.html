@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="es">
+<html lang="ca">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#10131f">
-  <meta name="description" content="Juegos musicales, vídeos y recursos educativos creados por Damimus.">
-  <title>Damimus — juegos, música y recursos</title>
+  <meta name="description" content="Jocs musicals, vídeos i recursos educatius creats per Damimus.">
+  <title>Damimus — jocs, música i recursos</title>
   <style>
     :root {
       color-scheme: dark;
@@ -60,6 +60,31 @@
 
     .wordmark span { color: var(--accent); }
 
+    .language-toggle {
+      min-height: 36px;
+      padding: 0 13px;
+      border: 1px solid rgba(196,240,107,.55);
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(196,240,107,.08);
+      font: inherit;
+      font-size: .82rem;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .language-toggle:hover, .language-toggle:focus-visible {
+      color: var(--accent-ink);
+      background: var(--accent);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 24px;
+    }
+
     nav {
       display: flex;
       flex-wrap: wrap;
@@ -94,11 +119,14 @@
 
     h1 {
       margin: 0;
-      font-size: clamp(4.5rem, 15vw, 10rem);
+      font-size: clamp(3rem, 11vw, 8rem);
       font-weight: 900;
       letter-spacing: -.095em;
       line-height: .9;
+      white-space: nowrap;
     }
+
+    h1 span { color: var(--accent); }
 
     .hero-copy {
       max-width: 600px;
@@ -276,6 +304,7 @@
     @media (max-width: 560px) {
       .wrap { width: min(100% - 28px, 1120px); }
       .site-header { min-height: 72px; align-items: flex-start; flex-direction: column; justify-content: center; gap: 10px; padding-block: 12px; }
+      .header-actions { width: 100%; justify-content: space-between; gap: 12px; }
       nav { justify-content: flex-start; gap: 8px 18px; }
       nav a { font-size: .84rem; }
       .hero { min-height: 375px; padding-block: 58px; }
@@ -294,28 +323,31 @@
 </head>
 <body>
   <header class="site-header wrap">
-    <a class="wordmark" href="#inicio" aria-label="Damimus, inicio">Dami<span>mus</span></a>
-    <nav aria-label="Navegación principal">
-      <a href="#juegos">Juegos</a>
-      <a href="#recursos">Webs y actividades</a>
-      <a href="#video">Vídeo</a>
-    </nav>
+    <a class="wordmark" href="#inicio" aria-label="Damimus, inici" data-i18n-aria="brandLabel">Dami<span>mus</span></a>
+    <div class="header-actions">
+      <nav aria-label="Navegación principal" data-i18n-aria="navLabel">
+        <a href="#juegos" data-i18n="navGames">Jocs</a>
+        <a href="#recursos" data-i18n="navResources">Webs i activitats</a>
+        <a href="#video" data-i18n="navVideo">Vídeo</a>
+      </nav>
+      <button class="language-toggle" id="languageToggle" type="button" aria-label="Canviar a castellà">Castellano</button>
+    </div>
   </header>
 
   <main>
     <section class="hero wrap" id="inicio">
-      <p class="eyebrow">Música para explorar y compartir</p>
-      <h1>Damimus</h1>
-      <p class="hero-copy">Juegos, ideas y recursos musicales creados para aprender, jugar y disfrutar. Un espacio que seguirá creciendo con nuevos proyectos.</p>
-      <a class="hero-link" href="#juegos">Explorar recursos <span aria-hidden="true">↓</span></a>
+      <p class="eyebrow" data-i18n="heroEyebrow">Música per a explorar i compartir</p>
+      <h1>Dami<span>mus</span></h1>
+      <p class="hero-copy" data-i18n="heroCopy">Jocs, idees i recursos musicals creats per a aprendre, jugar i gaudir. Un espai que continuarà creixent amb nous projectes.</p>
+      <a class="hero-link" href="#juegos"><span data-i18n="heroLink">Explora els recursos</span> <span aria-hidden="true">↓</span></a>
     </section>
 
     <section class="wrap" id="juegos">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">Proyectos interactivos</p>
-          <h2>Juegos musicales</h2>
-          <p class="section-intro">Prueba los juegos musicales y actividades interactivas.</p>
+          <p class="eyebrow" data-i18n="gamesEyebrow">Projectes interactius</p>
+          <h2 data-i18n="gamesTitle">Jocs musicals</h2>
+          <p class="section-intro" data-i18n="gamesIntro">Prova els jocs musicals i les activitats interactives.</p>
         </div>
       </div>
       <div class="resource-grid" id="gameGrid" aria-live="polite"></div>
@@ -324,9 +356,9 @@
     <section class="wrap" id="recursos">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">Más para descubrir</p>
-          <h2>Webs y actividades</h2>
-          <p class="section-intro">Otros espacios, propuestas y recursos musicales.</p>
+          <p class="eyebrow" data-i18n="resourcesEyebrow">Més per a descobrir</p>
+          <h2 data-i18n="resourcesTitle">Webs i activitats</h2>
+          <p class="section-intro" data-i18n="resourcesIntro">Altres espais, propostes i recursos musicals.</p>
         </div>
       </div>
       <div class="resource-grid" id="webGrid" aria-live="polite"></div>
@@ -336,28 +368,29 @@
       <div class="video-section">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">Una creación para escuchar</p>
-            <h2>Vídeo destacado</h2>
-            <p class="section-intro">Canciones, interpretaciones y otras creaciones propias.</p>
+            <p class="eyebrow" data-i18n="videoEyebrow">Una creació per a escoltar</p>
+            <h2 data-i18n="videoTitle">Vídeo destacat</h2>
+            <p class="section-intro" data-i18n="videoIntro">Cançons, interpretacions i altres creacions pròpies.</p>
           </div>
         </div>
         <div class="video-frame">
           <iframe
             src="https://www.youtube-nocookie.com/embed/OiDz3RbT6-w"
             title="Vídeo musical de Damimus en YouTube"
+            data-i18n-title="iframeTitle"
             loading="lazy"
             referrerpolicy="strict-origin-when-cross-origin"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
         </div>
-        <a class="video-link" href="https://www.youtube.com/watch?v=OiDz3RbT6-w" target="_blank" rel="noopener noreferrer">Ver en YouTube <span aria-hidden="true">↗</span></a>
+        <a class="video-link" href="https://www.youtube.com/watch?v=OiDz3RbT6-w" target="_blank" rel="noopener noreferrer"><span data-i18n="videoLink">Mira'l en YouTube</span> <span aria-hidden="true">↗</span></a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer wrap">
-    <span><strong>Damimus</strong> · Música, juegos y recursos</span>
-    <a href="#inicio">Volver arriba ↑</a>
+    <span><strong>Damimus</strong> · <span data-i18n="footerLine">Música, jocs i recursos</span></span>
+    <a href="#inicio" data-i18n="backToTop">Torna amunt ↑</a>
   </footer>
 
   <script>
@@ -365,86 +398,172 @@
     const resources = [
       {
         title: "Cercles Musicals",
-        description: "Crea patrones de ritmo, escucha y juega con los sonidos.",
+        description: {
+          ca: "Crea patrons rítmics, escolta i juga amb els sons.",
+          es: "Crea patrones de ritmo, escucha y juega con los sonidos."
+        },
         category: "game",
-        categoryLabel: "Juego musical",
+        categoryLabel: { ca: "Joc musical", es: "Juego musical" },
         icon: "🥁",
         url: "https://damimus.github.io/cercles-musicals/",
-        action: "Jugar"
+        action: { ca: "Juga-hi", es: "Jugar" }
       },
       {
         title: "MIDI Hero",
-        description: "Convierte canciones MIDI en un reto musical interactivo.",
+        description: {
+          ca: "Converteix cançons MIDI en un repte musical interactiu.",
+          es: "Convierte canciones MIDI en un reto musical interactivo."
+        },
         category: "game",
-        categoryLabel: "Juego musical",
+        categoryLabel: { ca: "Joc musical", es: "Juego musical" },
         icon: "🎹",
         url: "https://damimus.github.io/mid-hero/",
-        action: "Jugar"
+        action: { ca: "Juga-hi", es: "Jugar" }
       },
       {
         title: "Oído Musical",
-        description: "Entrena el oído y descubre las notas de los sonidos.",
+        description: {
+          ca: "Entrena l'oïda i descobreix les notes dels sons.",
+          es: "Entrena el oído y descubre las notas de los sonidos."
+        },
         category: "game",
-        categoryLabel: "Entrenamiento auditivo",
+        categoryLabel: { ca: "Entrenament auditiu", es: "Entrenamiento auditivo" },
         icon: "👂",
         url: "https://damimus.github.io/oido-musical/",
-        action: "Explorar"
+        action: { ca: "Explora'l", es: "Explorar" }
       },
       {
         title: "Punt Musical",
-        description: "Practica ritmo y lectura musical con ejercicios visuales.",
+        description: {
+          ca: "Practica el ritme i la lectura musical amb exercicis visuals.",
+          es: "Practica ritmo y lectura musical con ejercicios visuales."
+        },
         category: "game",
-        categoryLabel: "Juego musical",
+        categoryLabel: { ca: "Joc musical", es: "Juego musical" },
         icon: "🎼",
         url: "https://damimus.github.io/punt-musical/",
-        action: "Jugar"
+        action: { ca: "Juga-hi", es: "Jugar" }
       },
       {
         title: "Morse Musical",
-        description: "Una propuesta para jugar con música y el código Morse.",
+        description: {
+          ca: "Una proposta per a jugar amb la música i el codi Morse.",
+          es: "Una propuesta para jugar con música y el código Morse."
+        },
         category: "game",
-        categoryLabel: "Juego musical",
+        categoryLabel: { ca: "Joc musical", es: "Juego musical" },
         icon: "〰️",
         url: "https://damimus.github.io/morse-musical/",
-        action: "Explorar"
+        action: { ca: "Explora'l", es: "Explorar" }
       },
       {
-        title: "DamiJocs",
-        description: "Proyecto alojado en un repositorio privado; requiere acceso autorizado.",
+        title: "Damimus",
+        description: {
+          ca: "Repositori amb jocs i projectes creats per Damimus.",
+          es: "Repositorio con juegos y proyectos creados por Damimus."
+        },
         category: "game",
-        categoryLabel: "Proyecto privado",
-        icon: "🧩",
-        url: "https://github.com/damimus/damijocs",
-        action: "Ver proyecto"
+        categoryLabel: { ca: "Projecte", es: "Proyecto" },
+        icon: "🎵",
+        url: "https://github.com/damimus/Damimus",
+        action: { ca: "Visita el repositori", es: "Ver repositorio" }
       },
       {
         title: "Musicontes",
-        description: "Cuentos y propuestas para descubrir la música.",
+        description: {
+          ca: "Contes i propostes per a descobrir la música.",
+          es: "Cuentos y propuestas para descubrir la música."
+        },
         category: "web",
-        categoryLabel: "Web musical",
+        categoryLabel: { ca: "Web musical", es: "Web musical" },
         icon: "📚",
         url: "https://musicontes.weebly.com",
-        action: "Visitar web"
+        action: { ca: "Visita el web", es: "Visitar web" }
       },
       {
         title: "Aula Orff",
-        description: "Instrumentaciones y recursos inspirados en la pedagogía Orff.",
+        description: {
+          ca: "Instrumentacions i recursos inspirats en la pedagogia Orff.",
+          es: "Instrumentaciones y recursos inspirados en la pedagogía Orff."
+        },
         category: "web",
-        categoryLabel: "Actividades",
+        categoryLabel: { ca: "Activitats", es: "Actividades" },
         icon: "🎶",
         url: "https://aulaorff.wixsite.com/instrumentacions",
-        action: "Visitar web"
+        action: { ca: "Visita el web", es: "Visitar web" }
       },
       {
         title: "El Petit Moret",
-        description: "Un espacio con más actividades y creaciones.",
+        description: {
+          ca: "Un espai amb més activitats i creacions.",
+          es: "Un espacio con más actividades y creaciones."
+        },
         category: "web",
-        categoryLabel: "Web",
+        categoryLabel: { ca: "Web", es: "Web" },
         icon: "🌱",
         url: "https://elpetitmoret.weebly.com",
-        action: "Visitar web"
+        action: { ca: "Visita el web", es: "Visitar web" }
       }
     ];
+
+    const pageTranslations = {
+      ca: {
+        pageTitle: "Damimus — jocs, música i recursos",
+        metaDescription: "Jocs musicals, vídeos i recursos educatius creats per Damimus.",
+        brandLabel: "Damimus, inici",
+        navLabel: "Navegació principal",
+        navGames: "Jocs",
+        navResources: "Webs i activitats",
+        navVideo: "Vídeo",
+        switchLanguage: "Castellano",
+        switchLanguageLabel: "Canviar a castellà",
+        heroEyebrow: "Música per a explorar i compartir",
+        heroCopy: "Jocs, idees i recursos musicals creats per a aprendre, jugar i gaudir. Un espai que continuarà creixent amb nous projectes.",
+        heroLink: "Explora els recursos",
+        gamesEyebrow: "Projectes interactius",
+        gamesTitle: "Jocs musicals",
+        gamesIntro: "Prova els jocs musicals i les activitats interactives.",
+        resourcesEyebrow: "Més per a descobrir",
+        resourcesTitle: "Webs i activitats",
+        resourcesIntro: "Altres espais, propostes i recursos musicals.",
+        videoEyebrow: "Una creació per a escoltar",
+        videoTitle: "Vídeo destacat",
+        videoIntro: "Cançons, interpretacions i altres creacions pròpies.",
+        iframeTitle: "Vídeo musical de Damimus en YouTube",
+        videoLink: "Mira'l en YouTube",
+        footerLine: "Música, jocs i recursos",
+        backToTop: "Torna amunt ↑"
+      },
+      es: {
+        pageTitle: "Damimus — juegos, música y recursos",
+        metaDescription: "Juegos musicales, vídeos y recursos educativos creados por Damimus.",
+        brandLabel: "Damimus, inicio",
+        navLabel: "Navegación principal",
+        navGames: "Juegos",
+        navResources: "Webs y actividades",
+        navVideo: "Vídeo",
+        switchLanguage: "Valencià",
+        switchLanguageLabel: "Cambiar a valenciano",
+        heroEyebrow: "Música para explorar y compartir",
+        heroCopy: "Juegos, ideas y recursos musicales creados para aprender, jugar y disfrutar. Un espacio que seguirá creciendo con nuevos proyectos.",
+        heroLink: "Explora los recursos",
+        gamesEyebrow: "Proyectos interactivos",
+        gamesTitle: "Juegos musicales",
+        gamesIntro: "Prueba los juegos musicales y las actividades interactivas.",
+        resourcesEyebrow: "Más para descubrir",
+        resourcesTitle: "Webs y actividades",
+        resourcesIntro: "Otros espacios, propuestas y recursos musicales.",
+        videoEyebrow: "Una creación para escuchar",
+        videoTitle: "Vídeo destacado",
+        videoIntro: "Canciones, interpretaciones y otras creaciones propias.",
+        iframeTitle: "Vídeo musical de Damimus en YouTube",
+        videoLink: "Ver en YouTube",
+        footerLine: "Música, juegos y recursos",
+        backToTop: "Volver arriba ↑"
+      }
+    };
+
+    let currentLanguage = "ca";
 
     function renderResources(category, grid) {
       grid.replaceChildren();
@@ -462,19 +581,19 @@
           icon.textContent = resource.icon;
           const tag = document.createElement("span");
           tag.className = "tag";
-          tag.textContent = resource.categoryLabel;
+          tag.textContent = resource.categoryLabel[currentLanguage];
           top.append(icon, tag);
 
           const title = document.createElement("h3");
           title.textContent = resource.title;
           const description = document.createElement("p");
-          description.textContent = resource.description;
+          description.textContent = resource.description[currentLanguage];
           const link = document.createElement("a");
           link.className = "card-link";
           link.href = resource.url;
           link.target = "_blank";
           link.rel = "noopener noreferrer";
-          link.append(document.createTextNode(`${resource.action} `));
+          link.append(document.createTextNode(`${resource.action[currentLanguage]} `));
           const arrow = document.createElement("span");
           arrow.setAttribute("aria-hidden", "true");
           arrow.textContent = "↗";
@@ -485,8 +604,33 @@
         });
     }
 
-    renderResources("game", document.querySelector("#gameGrid"));
-    renderResources("web", document.querySelector("#webGrid"));
+    function setLanguage(language) {
+      currentLanguage = language;
+      document.documentElement.lang = language;
+      document.title = pageTranslations[language].pageTitle;
+      document.querySelector('meta[name="description"]').content = pageTranslations[language].metaDescription;
+      document.querySelectorAll("[data-i18n]").forEach(element => {
+        const key = element.dataset.i18n;
+        element.textContent = pageTranslations[language][key];
+      });
+      document.querySelectorAll("[data-i18n-aria]").forEach(element => {
+        element.setAttribute("aria-label", pageTranslations[language][element.dataset.i18nAria]);
+      });
+      document.querySelectorAll("[data-i18n-title]").forEach(element => {
+        element.title = pageTranslations[language][element.dataset.i18nTitle];
+      });
+      const languageToggle = document.querySelector("#languageToggle");
+      languageToggle.textContent = pageTranslations[language].switchLanguage;
+      languageToggle.setAttribute("aria-label", pageTranslations[language].switchLanguageLabel);
+      renderResources("game", document.querySelector("#gameGrid"));
+      renderResources("web", document.querySelector("#webGrid"));
+    }
+
+    document.querySelector("#languageToggle").addEventListener("click", () => {
+      setLanguage(currentLanguage === "ca" ? "es" : "ca");
+    });
+
+    setLanguage("ca");
   </script>
 </body>
 </html>

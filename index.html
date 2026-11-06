@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10131f">
+  <meta name="description" content="Juegos musicales, vídeos y recursos educativos creados por Damimus.">
+  <title>Damimus — juegos, música y recursos</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #10131f;
+      --surface: #191d2c;
+      --surface-raised: #202638;
+      --text: #f7f7fb;
+      --muted: #a7aec2;
+      --accent: #c4f06b;
+      --accent-ink: #1c2710;
+      --line: rgba(255,255,255,.1);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-width: 320px;
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 86% 0%, rgba(86, 108, 173, .2), transparent 36rem),
+        radial-gradient(ellipse at 0% 40%, rgba(196, 240, 107, .08), transparent 35rem),
+        var(--bg);
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(1120px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      display: flex;
+      min-height: 82px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .wordmark {
+      color: var(--text);
+      font-size: 1.15rem;
+      font-weight: 850;
+      letter-spacing: -.05em;
+      text-decoration: none;
+    }
+
+    .wordmark span { color: var(--accent); }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px 24px;
+    }
+
+    nav a {
+      color: var(--muted);
+      font-size: .92rem;
+      text-decoration: none;
+    }
+
+    nav a:hover, nav a:focus-visible { color: var(--accent); }
+
+    .hero {
+      display: grid;
+      min-height: 490px;
+      align-content: center;
+      justify-items: start;
+      padding-block: 74px 84px;
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      color: var(--accent);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(4.5rem, 15vw, 10rem);
+      font-weight: 900;
+      letter-spacing: -.095em;
+      line-height: .9;
+    }
+
+    .hero-copy {
+      max-width: 600px;
+      margin: 26px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      line-height: 1.65;
+    }
+
+    .hero-link {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 30px;
+      padding: 0 20px;
+      border-radius: 999px;
+      color: var(--accent-ink);
+      background: var(--accent);
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .18s ease, background .18s ease;
+    }
+
+    .hero-link:hover { transform: translateY(-2px); background: #d3fa82; }
+
+    section { padding-block: 56px 66px; }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 26px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+      letter-spacing: -.055em;
+    }
+
+    .section-intro {
+      max-width: 550px;
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      display: flex;
+      min-height: 205px;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.018)), var(--surface);
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(196,240,107,.42);
+      background-color: var(--surface-raised);
+    }
+
+    .card-top {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .card-icon { font-size: 1.55rem; }
+
+    .tag {
+      padding: 5px 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: .72rem;
+      white-space: nowrap;
+    }
+
+    .card h3 {
+      margin: 22px 0 8px;
+      font-size: 1.18rem;
+      letter-spacing: -.025em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .94rem;
+      line-height: 1.55;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: auto;
+      padding-top: 22px;
+      color: var(--accent);
+      font-size: .92rem;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .card-link:hover { text-decoration: underline; }
+
+    .video-section {
+      margin-top: 10px;
+      padding: 36px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(196,240,107,.09), transparent 45%), var(--surface);
+    }
+
+    .video-section .section-heading { margin-bottom: 22px; }
+
+    .video-frame {
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #080a10;
+    }
+
+    .video-frame iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-link {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--accent);
+      font-size: .92rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .video-link:hover { text-decoration: underline; }
+
+    .site-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 64px;
+      padding-block: 24px 32px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .site-footer strong { color: var(--text); }
+
+    @media (max-width: 800px) {
+      .resource-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero { min-height: 420px; }
+      .video-section { padding: 26px; }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 28px, 1120px); }
+      .site-header { min-height: 72px; align-items: flex-start; flex-direction: column; justify-content: center; gap: 10px; padding-block: 12px; }
+      nav { justify-content: flex-start; gap: 8px 18px; }
+      nav a { font-size: .84rem; }
+      .hero { min-height: 375px; padding-block: 58px; }
+      .resource-grid { grid-template-columns: 1fr; }
+      .card { min-height: 175px; }
+      section { padding-block: 42px 48px; }
+      .section-heading { align-items: flex-start; flex-direction: column; gap: 12px; }
+      .video-section { padding: 18px; border-radius: 22px; }
+      .site-footer { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header wrap">
+    <a class="wordmark" href="#inicio" aria-label="Damimus, inicio">Dami<span>mus</span></a>
+    <nav aria-label="Navegación principal">
+      <a href="#juegos">Juegos</a>
+      <a href="#recursos">Webs y actividades</a>
+      <a href="#video">Vídeo</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="inicio">
+      <p class="eyebrow">Música para explorar y compartir</p>
+      <h1>Damimus</h1>
+      <p class="hero-copy">Juegos, ideas y recursos musicales creados para aprender, jugar y disfrutar. Un espacio que seguirá creciendo con nuevos proyectos.</p>
+      <a class="hero-link" href="#juegos">Explorar recursos <span aria-hidden="true">↓</span></a>
+    </section>
+
+    <section class="wrap" id="juegos">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Proyectos interactivos</p>
+          <h2>Juegos musicales</h2>
+          <p class="section-intro">Prueba los juegos musicales y actividades interactivas.</p>
+        </div>
+      </div>
+      <div class="resource-grid" id="gameGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="wrap" id="recursos">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Más para descubrir</p>
+          <h2>Webs y actividades</h2>
+          <p class="section-intro">Otros espacios, propuestas y recursos musicales.</p>
+        </div>
+      </div>
+      <div class="resource-grid" id="webGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="wrap" id="video">
+      <div class="video-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Una creación para escuchar</p>
+            <h2>Vídeo destacado</h2>
+            <p class="section-intro">Canciones, interpretaciones y otras creaciones propias.</p>
+          </div>
+        </div>
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/OiDz3RbT6-w"
+            title="Vídeo musical de Damimus en YouTube"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+        <a class="video-link" href="https://www.youtube.com/watch?v=OiDz3RbT6-w" target="_blank" rel="noopener noreferrer">Ver en YouTube <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap">
+    <span><strong>Damimus</strong> · Música, juegos y recursos</span>
+    <a href="#inicio">Volver arriba ↑</a>
+  </footer>
+
+  <script>
+    // Añade nuevos recursos a esta lista para que aparezcan automáticamente en la página.
+    const resources = [
+      {
+        title: "Cercles Musicals",
+        description: "Crea patrones de ritmo, escucha y juega con los sonidos.",
+        category: "game",
+        categoryLabel: "Juego musical",
+        icon: "🥁",
+        url: "https://damimus.github.io/cercles-musicals/",
+        action: "Jugar"
+      },
+      {
+        title: "MIDI Hero",
+        description: "Convierte canciones MIDI en un reto musical interactivo.",
+        category: "game",
+        categoryLabel: "Juego musical",
+        icon: "🎹",
+        url: "https://damimus.github.io/mid-hero/",
+        action: "Jugar"
+      },
+      {
+        title: "Oído Musical",
+        description: "Entrena el oído y descubre las notas de los sonidos.",
+        category: "game",
+        categoryLabel: "Entrenamiento auditivo",
+        icon: "👂",
+        url: "https://damimus.github.io/oido-musical/",
+        action: "Explorar"
+      },
+      {
+        title: "Punt Musical",
+        description: "Practica ritmo y lectura musical con ejercicios visuales.",
+        category: "game",
+        categoryLabel: "Juego musical",
+        icon: "🎼",
+        url: "https://damimus.github.io/punt-musical/",
+        action: "Jugar"
+      },
+      {
+        title: "Morse Musical",
+        description: "Una propuesta para jugar con música y el código Morse.",
+        category: "game",
+        categoryLabel: "Juego musical",
+        icon: "〰️",
+        url: "https://damimus.github.io/morse-musical/",
+        action: "Explorar"
+      },
+      {
+        title: "DamiJocs",
+        description: "Proyecto alojado en un repositorio privado; requiere acceso autorizado.",
+        category: "game",
+        categoryLabel: "Proyecto privado",
+        icon: "🧩",
+        url: "https://github.com/damimus/damijocs",
+        action: "Ver proyecto"
+      },
+      {
+        title: "Musicontes",
+        description: "Cuentos y propuestas para descubrir la música.",
+        category: "web",
+        categoryLabel: "Web musical",
+        icon: "📚",
+        url: "https://musicontes.weebly.com",
+        action: "Visitar web"
+      },
+      {
+        title: "Aula Orff",
+        description: "Instrumentaciones y recursos inspirados en la pedagogía Orff.",
+        category: "web",
+        categoryLabel: "Actividades",
+        icon: "🎶",
+        url: "https://aulaorff.wixsite.com/instrumentacions",
+        action: "Visitar web"
+      },
+      {
+        title: "El Petit Moret",
+        description: "Un espacio con más actividades y creaciones.",
+        category: "web",
+        categoryLabel: "Web",
+        icon: "🌱",
+        url: "https://elpetitmoret.weebly.com",
+        action: "Visitar web"
+      }
+    ];
+
+    function renderResources(category, grid) {
+      grid.replaceChildren();
+      resources
+        .filter(resource => resource.category === category)
+        .forEach(resource => {
+          const article = document.createElement("article");
+          article.className = "card";
+
+          const top = document.createElement("div");
+          top.className = "card-top";
+          const icon = document.createElement("span");
+          icon.className = "card-icon";
+          icon.setAttribute("aria-hidden", "true");
+          icon.textContent = resource.icon;
+          const tag = document.createElement("span");
+          tag.className = "tag";
+          tag.textContent = resource.categoryLabel;
+          top.append(icon, tag);
+
+          const title = document.createElement("h3");
+          title.textContent = resource.title;
+          const description = document.createElement("p");
+          description.textContent = resource.description;
+          const link = document.createElement("a");
+          link.className = "card-link";
+          link.href = resource.url;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          link.append(document.createTextNode(`${resource.action} `));
+          const arrow = document.createElement("span");
+          arrow.setAttribute("aria-hidden", "true");
+          arrow.textContent = "↗";
+          link.append(arrow);
+
+          article.append(top, title, description, link);
+          grid.append(article);
+        });
+    }
+
+    renderResources("game", document.querySelector("#gameGrid"));
+    renderResources("web", document.querySelector("#webGrid"));
+  </script>
+</body>
+</html>
